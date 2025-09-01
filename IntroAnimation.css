@@ -1,0 +1,172 @@
+.ring-loader-container {
+  background-color: #190019;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.5s, transform 0.6s;
+  opacity: 1;
+  z-index: 1000;
+}
+
+.ring-loader-container.zoom-out {
+  opacity: 0;
+  transform: scale(0.7);
+  pointer-events: none;
+}
+
+/* Make the loader larger */
+.loader-ring-set {
+  position: relative;
+  width: 320px;   /* increased */
+  height: 390px;  /* increased */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Extra large static rings */
+.loader-ring-track.extra1 {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  border: 3px solid #EAC7C7;
+  box-shadow: 0 0 18px 3px rgba(218, 175, 229, 0.13) inset;
+}
+
+.loader-ring-track.extra2 {
+  position: absolute;
+  width: 359px;
+  height: 359px;
+  border-radius: 50%;
+  border: 3px solid #DFB8B2;
+  box-shadow: 0 0 12px 2px rgba(223,184,178,0.09) inset;
+}
+
+.loader-ring-track.extra3 {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  border: 2px solid #B792C3;
+  box-shadow: 0 0 6px 2px rgba(183,146,195,0.10) inset;
+}
+
+/* Update original static rings for more space */
+.loader-ring-track.outer {
+  position: absolute;
+  width: 288px;
+  height: 288px;
+  border-radius: 50%;
+  border: 3px solid #564256;
+  box-shadow: 0 0 20px 4px rgba(0,0,0,0.18) inset;
+}
+
+.loader-ring-track.inner {
+  position: absolute;
+  width: 268px;
+  height: 268px;
+  border-radius: 50%;
+  border: 2px solid #857498;
+  box-shadow: 0 0 10px 2px rgba(0,0,0,0.15) inset;
+}
+
+/* Rotating rings, tweaked for more spacing */
+.loader-ring-light.outer {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: #854FBC;
+  border-right-color: #EAC7C7;
+  border-bottom-color: #DFB8B2;
+  animation: spin 2.4s linear infinite;
+}
+
+.loader-ring-light.inner {
+  position: absolute;
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: #EAC7C7;
+  border-left-color: #854FBC;
+  border-bottom-color: #564256;
+  animation: spin-reverse 2s linear infinite;
+}
+
+.loader-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 102px;        /* slightly larger for the bigger loader */
+  height: 102px;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+  animation: fadeInZoom 2s cubic-bezier(0.77,0,0.175,1) forwards;
+  filter: drop-shadow(0 0 8px #DFB8B2);
+  background: transparent;
+  z-index: 3;
+}
+/* Animations */
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
+
+@keyframes spin-reverse {
+  0% { transform: rotate(360deg);}
+  100% { transform: rotate(0deg);}
+}
+
+@keyframes fadeInZoom {
+  0% {
+    transform: translate(-50%, -50%) scale(0.7);
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .loader-ring-set {
+    width: 140px;
+    height: 140px;
+  }
+  .loader-ring-track.outer {
+    width: 120px;
+    height: 120px;
+  }
+  .loader-ring-track.inner {
+    width: 88px;
+    height: 88px;
+  }
+  .loader-ring-light.outer {
+    width: 105px;
+    height: 105px;
+    border-width: 5px;
+  }
+  .loader-ring-light.inner {
+    width: 60px;
+    height: 60px;
+    border-width: 3px;
+  }
+  .loader-logo {
+    width: 42px;
+    height: 42px;
+  }
+}
